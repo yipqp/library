@@ -49,7 +49,7 @@ main {
 }
 
 .book,
-.form-container {
+.add-book-form {
   border-radius: 15px;
   border: 2px solid var(--book-border);
 }
@@ -135,7 +135,7 @@ svg {
   transform: translate(-50%, -50%);
 }
 
-.form-container {
+.add-book-form {
   display: flex;
   align-items: center;
   justify-content: center;
