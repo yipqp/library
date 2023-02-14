@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+:root {
+  --main-bgc: #0f172a;
+  --header-bgc: #1e293b;
+  --book-border: #64748b;
+  --white: #e2e8f0;
+  font-size: 18px;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr 100px;
+  min-height: 100%;
+}
+
+header {
+  display: grid;
+  justify-items: center;
+  background-color: var(--header-bgc);
+  color: var(--white);
+  position: relative;
+  box-shadow: 0 2px 4px #171717;
+}
+
+.header > h1 {
+  font-weight: normal;
+  padding: 35px;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 325px);
+  align-items: start;
+  justify-content: center;
+  padding: 40px;
+  gap: 100px;
+  background-color: var(--main-bgc);
+  color: #fffdf7;
+}
+
+.book {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  border: 2px solid var(--book-border);
+  color: var(--white);
+  gap: 25px;
+  padding: 30px;
+}
+
+.book-title {
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.book-read-status {
+  display: flex;
+  gap: 10px;
+}
+
+.bottom-row {
+  display: flex;
+  justify-content: flex-end;
+  align-self: stretch;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.buttons > button {
+  border: none;
+  background-color: var(--main-bgc);
+  width: 25px;
+}
+
+svg {
+  fill: var(--white);
+  pointer-events: none;
+}
+
+button {
+  transition: ease-in-out 0.15s;
+}
+
+button:hover {
+  filter: brightness(150%);
+  transform: scale(1.1);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+footer {
+  background-color: var(--main-bgc);
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+footer > button {
+  width: 85px;
+  height: 85px;
+  margin: 0 40px 40px 0;
+  background-color: inherit;
+  border: none;
+}
