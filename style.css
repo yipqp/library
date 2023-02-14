@@ -48,12 +48,16 @@ main {
   color: #fffdf7;
 }
 
+.book,
+.form-container {
+  border-radius: 15px;
+  border: 2px solid var(--book-border);
+}
+
 .book {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 15px;
-  border: 2px solid var(--book-border);
   color: var(--white);
   gap: 25px;
   padding: 30px;
@@ -91,30 +95,109 @@ svg {
   pointer-events: none;
 }
 
-button {
+.bottom-row button,
+.footer button {
   transition: ease-in-out 0.15s;
 }
 
-button:hover {
+.bottom-row button:hover,
+.footer button:hover {
   filter: brightness(150%);
   transform: scale(1.1);
 }
 
-button:active {
+.bottom-row button:active,
+.footer button:active {
   transform: scale(0.95);
 }
 
-footer {
+.footer {
   background-color: var(--main-bgc);
   display: flex;
   justify-content: end;
   align-items: center;
 }
 
-footer > button {
+.footer > button {
   width: 85px;
   height: 85px;
   margin: 0 40px 40px 0;
   background-color: inherit;
   border: none;
+}
+
+.form-popup {
+  display: none;
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
+  width: 350px;
+  color: var(--white);
+  padding: 50px;
+  font-size: 1.75rem;
+  gap: 20px;
+}
+
+.form-buttons {
+  display: flex;
+  align-self: stretch;
+  margin-top: 20px;
+  gap: 25px;
+}
+
+.form-buttons > button {
+  flex: 1;
+  padding: 5px 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  color: var(--header-bgc);
+}
+
+input[type="text"] {
+  appearance: none;
+  padding: 10px;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+}
+
+input[type="text"]:not(:focus):not(:placeholder-shown):invalid {
+  outline: 2px solid #f87171;
+  background-color: #fee2e2;
+}
+
+button {
+  cursor: pointer;
+}
+
+.save-button {
+  background-color: #86efac;
+}
+
+.cancel-button {
+  background-color: #f87171;
+}
+
+.blur {
+  backdrop-filter: blur(3px) brightness(50%);
+}
+
+.blur-container {
+  position: absolute;
+  display: none;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
 }
