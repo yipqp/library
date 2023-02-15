@@ -68,11 +68,6 @@ main {
   font-style: italic;
 }
 
-.book-read-status {
-  display: flex;
-  gap: 10px;
-}
-
 .bottom-row {
   display: flex;
   justify-content: flex-end;
