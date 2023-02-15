@@ -10,6 +10,8 @@
   --header-bgc: #1e293b;
   --book-border: #64748b;
   --white: #e2e8f0;
+  --green: #86efac;
+  --red: #f87171;
   font-size: 18px;
 }
 
@@ -52,6 +54,10 @@ main {
 .add-book-form {
   border-radius: 15px;
   border: 2px solid var(--book-border);
+}
+
+[data-read="true"] {
+  border: 2px solid var(--green);
 }
 
 .book {
@@ -167,8 +173,15 @@ input[type="text"] {
 }
 
 input[type="text"]:not(:focus):not(:placeholder-shown):invalid {
-  outline: 2px solid #f87171;
+  outline: 2px solid var(--red);
   background-color: #fee2e2;
+}
+
+.read-label {
+  display: grid;
+  font-size: 1.2rem;
+  grid-template-columns: 1.2rem auto;
+  gap: 1.2rem;
 }
 
 button {
@@ -176,11 +189,11 @@ button {
 }
 
 .save-button {
-  background-color: #86efac;
+  background-color: var(--green);
 }
 
 .cancel-button {
-  background-color: #f87171;
+  background-color: var(--red);
 }
 
 .blur {

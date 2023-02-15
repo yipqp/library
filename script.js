@@ -5,6 +5,7 @@ const blurContainer = document.querySelector(".blur-container");
 const titleInput = document.querySelector("#title");
 const authorInput = document.querySelector("#author");
 const pagesInput = document.querySelector("#pageNumber");
+const readInput = document.querySelector("#read");
 const addBookForm = document.querySelector(".add-book-form");
 const main = document.querySelector("main");
 
@@ -14,6 +15,7 @@ function clearInputs() {
   titleInput.value = "";
   authorInput.value = "";
   pagesInput.value = "";
+  readInput.checked = false;
 }
 
 function closeForm() {
@@ -26,23 +28,16 @@ function addBookToLibrary(book) {
   library.push(book);
 }
 
-function deleteBook() {
-  const bookIndex =
-    this.parentElement.parentElement.parentElement.dataset.index;
-  library.splice(bookIndex, 1);
-  updateCardDisplay();
-}
-
 function updateCardDisplay() {
   let htmlCards = "";
   library.forEach((book, index) => {
-    htmlCards += `<div class="book" data-index=${index}>
+    htmlCards += `<div class="book" data-index=${index} data-read=${library[index].isRead}>
     <div class="book-title">${book.title}</div>
     <div class="book-author">${book.author}</div>
     <div class="book-pages">${book.pages}</div>
     <div class="bottom-row">
-      <div class="buttons">
-        <button class="read">
+      <div class="buttons" data-index=${index}>
+        <button class="read-button">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <title>check-bold</title>
             <path
@@ -63,19 +58,38 @@ function updateCardDisplay() {
   </div>`;
   });
   main.innerHTML = htmlCards;
-  const deleteButtons = document.querySelectorAll(".delete-button");
-  deleteButtons.forEach((book) => {
-    book.addEventListener("click", deleteBook);
-  });
 }
 
 class Book {
-  constructor(author, title, pages) {
+  constructor(author, title, pages, isRead) {
     this.author = author;
     this.title = title;
     this.pages = pages;
+    this.isRead = isRead;
   }
 }
+
+// card button events
+main.addEventListener("click", (e) => {
+  const delButton = e.target.closest(".delete-button");
+  const readButton = e.target.closest(".read-button");
+
+  if (!delButton && !readButton) return;
+
+  const bookIndex = e.target.parentElement.dataset.index;
+
+  if (delButton) {
+    library.splice(bookIndex, 1);
+  }
+
+  if (readButton) {
+    if (library[bookIndex].isRead) {
+      library[bookIndex].isRead = false;
+    } else library[bookIndex].isRead = true;
+  }
+
+  updateCardDisplay();
+});
 
 addBookButton.addEventListener("click", () => {
   formPopup.style.display = "block";
@@ -90,16 +104,27 @@ addBookForm.addEventListener("submit", (e) => {
   const author = authorInput.value;
   const title = titleInput.value;
   const pages = pagesInput.value;
-  const tempBook = new Book(author, title, pages);
+  const isRead = readInput.checked;
+  const tempBook = new Book(author, title, pages, isRead);
   addBookToLibrary(tempBook);
   updateCardDisplay();
   closeForm();
 });
 
 window.addEventListener("load", () => {
-  const normalPeople = new Book("Sally Rooney", "Normal People", 239);
-  const cryingInHMart = new Book("Michelle Zauner", "Crying in H Mart", 257);
-  const theHouseOfHades = new Book("Rick Riordan", "The House of Hades", 673);
+  const normalPeople = new Book("Sally Rooney", "Normal People", 239, true);
+  const cryingInHMart = new Book(
+    "Michelle Zauner",
+    "Crying in H Mart",
+    257,
+    false
+  );
+  const theHouseOfHades = new Book(
+    "Rick Riordan",
+    "The House of Hades",
+    673,
+    true
+  );
 
   addBookToLibrary(normalPeople);
   addBookToLibrary(cryingInHMart);
